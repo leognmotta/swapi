@@ -1,1 +1,25 @@
+@import 'theme.scss';
+@import 'mixins.scss';
+
+header {
+  @include horizontally-centralize;
+
+  width: 100%;
+  max-width: 480px;
+
+  img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 4em;
+  }
+}
+
+footer {
+  text-align: center;
+
+  a {
+    color: $primaryColor;
+  }
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Poller+One&display=swap');
