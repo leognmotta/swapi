@@ -1,16 +1,15 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-import history from './services/history';
 import Layout from './layout';
 import Routes from './routes';
 
 const App: React.FC = () => (
-  <Router history={history}>
+  <BrowserRouter>
     <Layout>
       <Routes />
     </Layout>
-  </Router>
+  </BrowserRouter>
 );
 
 export default App;
