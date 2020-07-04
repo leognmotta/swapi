@@ -1,0 +1,15 @@
+@import '../../layout/theme.scss';
+@import '../../layout/mixins.scss';
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  height: 100%;
+
+  padding: 4em 0;
+
+  div {
+    border-color: $textColor;
+  }
+}

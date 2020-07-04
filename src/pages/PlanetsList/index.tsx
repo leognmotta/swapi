@@ -3,8 +3,8 @@ import { AxiosError } from 'axios';
 import { useLocation } from 'react-router-dom';
 
 import Swapi from '../../core/Swapi';
-import { Planets, Pagination } from '../../core/Swapi/interfaces';
-import { PlanetCard } from '../../components';
+import { Planets, SwapiPagination } from '../../core/Swapi/interfaces';
+import { PlanetCard, RingLoader, Search, Pagination } from '../../components';
 
 const PlanetsList: React.FC = () => {
   const { search: urlSearch } = useLocation();
@@ -13,7 +13,7 @@ const PlanetsList: React.FC = () => {
   const [page] = useState(parseInt(urlSearchParams.get('page') || '1', 10));
   const [search] = useState(urlSearchParams.get('search') || undefined);
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<Pagination<Planets>>();
+  const [data, setData] = useState<SwapiPagination<Planets>>();
   const [error, setError] = useState<AxiosError | undefined>();
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const PlanetsList: React.FC = () => {
   }, [page, search]);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <RingLoader />;
   }
 
   if (error) {
@@ -43,23 +43,29 @@ const PlanetsList: React.FC = () => {
   }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-      }}
-    >
-      {data?.results.map(({ url, name, terrain, gravity, population }) => (
-        <PlanetCard
-          key={url}
-          url={url}
-          name={name}
-          terrain={terrain}
-          gravity={gravity}
-          population={population}
-        />
-      ))}
+    <div>
+      <Search />
+
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+        }}
+      >
+        {data?.results.map(({ url, name, terrain, gravity, population }) => (
+          <PlanetCard
+            key={url}
+            url={url}
+            name={name}
+            terrain={terrain}
+            gravity={gravity}
+            population={population}
+          />
+        ))}
+      </div>
+
+      <Pagination />
     </div>
   );
 };
