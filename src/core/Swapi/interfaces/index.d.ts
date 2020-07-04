@@ -8,7 +8,7 @@ export interface FetchParams {
   options?: Options;
 }
 
-export interface Pagination<T> {
+export interface SwapiPagination<T> {
   count: number;
   next: string | null;
   previous: string | null;
