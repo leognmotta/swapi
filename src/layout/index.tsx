@@ -7,7 +7,7 @@ import './global.scss';
 const Layout: React.FC = ({ children }) => (
   <>
     <Helmet>
-      <meta name="description" content="Start wars planets web site." />
+      <meta name="description" content="Star Wars Planets." />
     </Helmet>
 
     {children}
