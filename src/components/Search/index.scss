@@ -1,0 +1,46 @@
+@import '../../layout/theme.scss';
+
+.form-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    button,
+    input {
+      border: none;
+      height: 2.5em;
+      background: none;
+      padding: 4px;
+      border-bottom: 1px solid $textColor;
+    }
+
+    label {
+      width: 100%;
+      max-width: 520px;
+
+      input {
+        width: 100%;
+        color: $textColor;
+        font-size: 1.2em;
+      }
+    }
+
+    button {
+      cursor: pointer;
+      color: $primaryColor;
+
+      .css-1hopehg {
+        border-color: $primaryColor;
+        border-bottom-color: transparent;
+      }
+    }
+  }
+}
