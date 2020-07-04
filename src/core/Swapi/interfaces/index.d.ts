@@ -8,6 +8,13 @@ export interface FetchParams {
   options?: Options;
 }
 
+export interface Pagination<T> {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: T[];
+}
+
 export interface Planets {
   name: string;
   rotation_period: string;

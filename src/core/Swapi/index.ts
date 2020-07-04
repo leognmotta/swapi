@@ -1,16 +1,16 @@
 import { AxiosResponse } from 'axios';
 
 import HttpClient from '../HttpClient';
-import { Planets, Options } from './interfaces';
+import { Planets, Options, Pagination } from './interfaces';
 
 class Swapi extends HttpClient {
-  public async getAllPlanets(options?: Options): Promise<Planets[]> {
+  public async getAllPlanets(options?: Options): Promise<Pagination<Planets>> {
     try {
-      const res: AxiosResponse<Planets[]> = await this.get<
+      const res: AxiosResponse<Pagination<Planets>> = await this.get<
         Planets,
-        AxiosResponse<Planets[]>
+        AxiosResponse<Pagination<Planets>>
       >('planets/', {
-        params: { options },
+        params: { page: options?.page, search: options?.search },
       });
 
       return this.success(res);
