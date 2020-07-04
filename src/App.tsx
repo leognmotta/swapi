@@ -1,18 +1,16 @@
 import React from 'react';
+import { Router } from 'react-router-dom';
 
-function App(): JSX.Element {
-  return (
-    <div className="App">
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </div>
-  );
-}
+import history from './services/history';
+import Layout from './layout';
+import Routes from './routes';
+
+const App: React.FC = () => (
+  <Router history={history}>
+    <Layout>
+      <Routes />
+    </Layout>
+  </Router>
+);
 
 export default App;
