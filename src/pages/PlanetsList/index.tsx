@@ -74,7 +74,13 @@ const PlanetsList: React.FC = () => {
         </div>
       )}
 
-      <Pagination />
+      <Pagination
+        count={data?.count || 0}
+        currentPage={page}
+        navigate={to => {
+          push(`${pathname}?page=${to}${search ? `&search=${search}` : ''}`);
+        }}
+      />
     </div>
   );
 };
