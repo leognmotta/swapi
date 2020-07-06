@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AxiosError } from 'axios';
 import { useLocation, useHistory } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import Swapi from '../../core/Swapi';
 import { Planets, SwapiPagination } from '../../core/Swapi/interfaces';
@@ -10,6 +11,7 @@ import {
   Search,
   Pagination,
   NotFoundComponent,
+  PlanetDetail,
 } from '../../components';
 
 const PlanetsList: React.FC = () => {
@@ -42,13 +44,12 @@ const PlanetsList: React.FC = () => {
     loadData();
   }, [page, search]);
 
-  if (error) {
-    // TODO: tratar error
-    return <h1>Unexpected Error</h1>;
-  }
-
   return (
     <div>
+      <Helmet>
+        <meta name="description" content="Find Star Wars planets." />
+      </Helmet>
+
       <Search
         loading={loading}
         onSubmit={value => {
@@ -66,20 +67,21 @@ const PlanetsList: React.FC = () => {
             flexWrap: 'wrap',
           }}
         >
-          {data?.results.map(({ url, name, terrain, gravity, population }) => (
-            <PlanetCard
-              key={url}
-              url={url}
-              name={name}
-              terrain={terrain}
-              gravity={gravity}
-              population={population}
-            />
+          {data?.results.map(({ name, url, terrain, gravity, population }) => (
+            <PlanetCard key={url}>
+              <PlanetDetail
+                name={name}
+                terrain={terrain}
+                gravity={gravity}
+                population={population}
+                url={url}
+              />
+            </PlanetCard>
           ))}
         </div>
       )}
 
-      {data?.count && data.count > 0 ? (
+      {data?.count && data.count > 0 && (
         <Pagination
           count={data?.count || 0}
           currentPage={page}
@@ -87,9 +89,9 @@ const PlanetsList: React.FC = () => {
             push(`${pathname}?page=${to}${search ? `&search=${search}` : ''}`);
           }}
         />
-      ) : (
-        <NotFoundComponent />
       )}
+
+      {error && error.response?.status === 404 && <NotFoundComponent />}
     </div>
   );
 };

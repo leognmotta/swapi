@@ -1,0 +1,21 @@
+@import '../../layout/theme.scss';
+
+.header {
+  a {
+    text-decoration: none;
+    color: $textColor;
+  }
+
+  border-bottom: 1px solid $textColor;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.icon {
+  align-self: flex-end;
+  margin: 0 2px;
+}
