@@ -1,0 +1,32 @@
+@import '../../layout/theme.scss';
+
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  margin: 2em 0;
+
+  .not-found-text {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    flex-direction: column;
+    text-align: end;
+    color: $textColor;
+    font-size: 1.8em;
+    margin-right: 14px;
+    text-transform: capitalize;
+
+    .not-found {
+      color: $primaryColor;
+      font-size: 2em;
+      margin-bottom: 14px;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 140px;
+  }
+}

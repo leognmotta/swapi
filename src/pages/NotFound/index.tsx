@@ -1,11 +1,9 @@
 import React from 'react';
 
+import { NotFoundComponent } from '../../components';
+
 const NotFound: React.FC = () => {
-  return (
-    <div>
-      <h1>Not Found</h1>
-    </div>
-  );
+  return <NotFoundComponent />;
 };
 
 export default NotFound;
