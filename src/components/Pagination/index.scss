@@ -1,0 +1,44 @@
+@import '../../layout/theme.scss';
+
+.pagination-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    color: $textColor;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    color: #d1d1d10c;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0;
+
+    li {
+      list-style: none;
+      height: 28px;
+      width: 28px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      margin: 0 6px;
+    }
+
+    .selected {
+      background: $primaryColor;
+
+      button {
+        color: $secondaryColor;
+      }
+    }
+  }
+}

@@ -4,7 +4,13 @@ import { useLocation, useHistory } from 'react-router-dom';
 
 import Swapi from '../../core/Swapi';
 import { Planets, SwapiPagination } from '../../core/Swapi/interfaces';
-import { PlanetCard, RingLoader, Search, Pagination } from '../../components';
+import {
+  PlanetCard,
+  RingLoader,
+  Search,
+  Pagination,
+  NotFoundComponent,
+} from '../../components';
 
 const PlanetsList: React.FC = () => {
   const { search: urlSearch, pathname } = useLocation();
@@ -37,7 +43,8 @@ const PlanetsList: React.FC = () => {
   }, [page, search]);
 
   if (error) {
-    return <h1>error</h1>;
+    // TODO: tratar error
+    return <h1>Unexpected Error</h1>;
   }
 
   return (
@@ -45,9 +52,7 @@ const PlanetsList: React.FC = () => {
       <Search
         loading={loading}
         onSubmit={value => {
-          push(
-            `${pathname}?page=${page}${value !== '' ? `&search=${value}` : ''}`
-          );
+          push(`${pathname}?page=1${value !== '' ? `&search=${value}` : ''}`);
         }}
       />
 
@@ -74,13 +79,17 @@ const PlanetsList: React.FC = () => {
         </div>
       )}
 
-      <Pagination
-        count={data?.count || 0}
-        currentPage={page}
-        navigate={to => {
-          push(`${pathname}?page=${to}${search ? `&search=${search}` : ''}`);
-        }}
-      />
+      {data?.count && data.count > 0 ? (
+        <Pagination
+          count={data?.count || 0}
+          currentPage={page}
+          navigate={to => {
+            push(`${pathname}?page=${to}${search ? `&search=${search}` : ''}`);
+          }}
+        />
+      ) : (
+        <NotFoundComponent />
+      )}
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import React from 'react';
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
 
+import './index.scss';
+
 interface Props {
   count: number;
   currentPage: number;
@@ -14,7 +16,7 @@ const Pagination: React.FC<Props> = ({ count, currentPage, navigate }) => {
   );
 
   return (
-    <div>
+    <div className="pagination-container">
       <button
         type="button"
         disabled={currentPage - 1 <= 0}
@@ -27,7 +29,7 @@ const Pagination: React.FC<Props> = ({ count, currentPage, navigate }) => {
 
       <ul>
         {pages.map(page => (
-          <li key={page}>
+          <li key={page} className={page + 1 === currentPage ? 'selected' : ''}>
             <button
               type="button"
               onClick={() => {
@@ -42,7 +44,7 @@ const Pagination: React.FC<Props> = ({ count, currentPage, navigate }) => {
 
       <button
         type="button"
-        disabled={currentPage >= count / 10}
+        disabled={currentPage >= Math.ceil(count / 10)}
         onClick={() => {
           navigate(currentPage + 1);
         }}
