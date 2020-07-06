@@ -15,7 +15,7 @@ const Search: React.FC<Props> = ({ onSubmit, loading }) => {
   return (
     <div className="form-container">
       <form
-        onSubmit={async e => {
+        onSubmit={e => {
           e.preventDefault();
 
           onSubmit(search);
@@ -32,7 +32,7 @@ const Search: React.FC<Props> = ({ onSubmit, loading }) => {
             onChange={e => setSearch(e.target.value)}
           />
         </label>
-        <button type="submit">
+        <button type="submit" data-testid="submit-button">
           {loading ? <ClipLoader size={18} /> : <FaSearch size={18} />}
         </button>
       </form>
